@@ -128,7 +128,7 @@ jobs:
           rm -rf bot.py panel.py
           rm -rf my_message_pb2.py 
           rm -rf ghost.py
-          rm -rr acc.db 
+          rm -rf acc.db 
           rm -rf Allowed_user.json
           git config --global user.name 'GitHub Actions'
           git config --global user.email 'action@github.com'
