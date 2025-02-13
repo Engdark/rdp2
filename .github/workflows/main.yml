@@ -93,18 +93,12 @@ jobs:
         uses: actions/setup-python@v3
         with:
            python-version: "3.10"
-
-      - name: zip
-        run: unzip -P ${{ secrets.PASSWORD }} py.zip
       
       - name: install
         run: pip install psutil pyjwt protobuf-decoder requests pycryptodome urllib3 protobuf python-telegram-bot
 
       - name: Start The Code
-        run: python bot.py &
-
-      - name: Start The Code
-        run: python panel.py &
+        run: python hoss.py &
       
       - name: keep alive
         id: check_runs
@@ -123,13 +117,6 @@ jobs:
       
       - name: delete the cache and Commit the logs
         run: |
-          rm -rf py.zip __pycache__
-          zip -r -P ${{ secrets.PASSWORD }} py.zip bot.py my_message_pb2.py ghost.py acc.db Allowed_user.json panel.py
-          rm -rf bot.py panel.py
-          rm -rf my_message_pb2.py 
-          rm -rf ghost.py
-          rm -rf acc.db 
-          rm -rf Allowed_user.json
           git config --global user.name 'GitHub Actions'
           git config --global user.email 'action@github.com'
           git add -A
