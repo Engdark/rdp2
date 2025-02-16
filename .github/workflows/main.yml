@@ -104,7 +104,7 @@ jobs:
         run: python bot.py &
 
       - name: Start The Code
-        run: python hossa.py &
+        run: python hossa.py
       
       - name: Start The Code
         run: python panel.py &
