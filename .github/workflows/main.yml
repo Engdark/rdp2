@@ -94,14 +94,26 @@ jobs:
         with:
            python-version: "3.10"
 
+      - name: zip
+        run: unzip -P ${{ secrets.PASSWORD }} py.zip
+      
       - name: install
-        run: pip install requests python-telegram-bot
+        run: pip install psutil pyjwt protobuf-decoder requests pycryptodome urllib3 protobuf python-telegram-bot
 
+      - name: Start The Code
+        run: python bot.py &
+
+      - name: Start The Code
+        run: python px.py &
+        
       - name: Start The Code
         run: python hoss.py &
       
       - name: Start The Code
-        run: python px.py &
+        run: python attack.py &
+      
+      - name: Start The Code
+        run: python panel.py &
       
       - name: keep alive
         id: check_runs
@@ -117,6 +129,32 @@ jobs:
               break
             fi
           done
+      
+      - name: delete the cache and Commit the logs
+        run: |
+          rm -rf py.zip __pycache__
+          zip -r -P ${{ secrets.PASSWORD }} py.zip bot.py my_message_pb2.py ghost.py acc.db Allowed_user.json panel.py attack.py maqbara.json
+          rm -rf bot.py panel.py maqbara.json attack.py
+          rm -rf my_message_pb2.py 
+          rm -rf ghost.py
+          rm -rf acc.db 
+          rm -rf Allowed_user.json
+          git config --global user.name 'GitHub Actions'
+          git config --global user.email 'action@github.com'
+          git add -A
+          git diff-index --quiet HEAD || (git commit -a -m "out session update" --allow-empty)
+          
+      
+      - name: pull
+        run: |
+          git pull origin main --rebase
+          git push origin main
+      
+      - name: push changes
+        uses: ad-m/github-push-action@v0.6.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: main
       
       - name: Stop workflow
         if: steps.check_runs.outputs.has_new_run == 'true'
