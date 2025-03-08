@@ -148,7 +148,7 @@ async def delete_encrypted_id(update: Update, context: ContextTypes.DEFAULT_TYPE
 # الدالة الرئيسية لبدء البوت
 def main():
     # استبدل 'YOUR_TOKEN_HERE' بالرمز الفعلي الخاص بك
-    application = Application.builder().token('7995102341:AAGlBAj9pVqH0iacr9puwWd8wdgH9c8rEu4').build()
+    application = Application.builder().token("8109629688:AAEWXWt8Z7nY5b__KH-hm2VP5dLxgxt5c6M").build()
 
 
     application.add_handler(CommandHandler('start', start))
