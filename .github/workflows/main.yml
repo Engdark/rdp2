@@ -100,8 +100,6 @@ jobs:
       - name: install
         run: pip install psutil pyjwt protobuf-decoder requests pycryptodome urllib3 protobuf python-telegram-bot
       
-      - name: Start The Code
-        run: python gherab.py &
     
       - name: keep alive
         id: check_runs
